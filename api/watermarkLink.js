@@ -5,7 +5,7 @@ require('dotenv').config()
 
 //output-url needs to be provided
 
-async function compress(req,res) {
+async function watermark(req,res) {
     
     req = req.body
 
@@ -40,5 +40,5 @@ async function compress(req,res) {
 
 }
 
-exports.execute = compress
+exports.execute = watermark
 
