@@ -3,9 +3,7 @@ require('dotenv').config()
 
 //reads link output file
 
-//output-url needs to be provided
-
-async function watermark(req,res) {
+async function crop(req,res) {
     
     req = req.body
 
@@ -13,9 +11,9 @@ async function watermark(req,res) {
 
     var config = {
         method: 'post',
-        url: 'https://api.apyhub.com/processor/image/watermark/url/file?output=' + req.outputName,
+        url: 'https://api.apyhub.com/processor/image/crop/url/file?output=test-sample.png&width=' + req.width + '&height=' + req.height,
         headers: { 
-            'apy-token': process.env.watermarkToken, 
+            'apy-token': process.env.cropToken, 
             'Content-Type': 'application/json'
         },
         data : req
@@ -40,5 +38,5 @@ async function watermark(req,res) {
 
 }
 
-exports.execute = watermark
+exports.execute = crop
 
