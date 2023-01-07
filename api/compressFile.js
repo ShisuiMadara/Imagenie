@@ -1,61 +1,56 @@
-require('dotenv').config()
-const axios = require('axios');
-const FormData = require('form-data');
-const formidable = require('formidable');
-const fs = require('fs');
+require("dotenv").config();
+const axios = require("axios");
+const FormData = require("form-data");
+const formidable = require("formidable");
+const fs = require("fs");
 
-async function compress (req,res) {
-
+async function compress(req, res) {
     var objPath = req.objPath;
-
     const form = new FormData();
-    form.append('image', fs.readFileSync(objPath), 'stock-photo.jpg');
+    form.append("image", fs.readFileSync(objPath), "stock-photo.jpg");
 
-    await axios.post(
-        'https://api.apyhub.com/processor/image/compress/file',
-        form,
-        {
+    await axios
+        .post("https://api.apyhub.com/processor/image/compress/file", form, {
             params: {
-                'output': req.outputName,
-                'quality': req.quality
+                output: req.outputName,
+                quality: req.quality,
             },
             headers: {
                 ...form.getHeaders(),
-                'apy-token': process.env.compressToken,
-                'content-type': 'multipart/form-data',
-            }
-        }
-    ).then(async function (response) {
-        console.log(JSON.stringify(response.data));
-        await res.send({
-            sucess:true,
-            data: response.data
+                "apy-token": process.env.compressToken,
+                "content-type": "multipart/form-data",
+            },
         })
-    })
-    .catch(function (error) {
-        console.log(error);
-
-        res.send({
-            success: false,
-            data: error
+        .then(async function (response) {
+            console.log(JSON.stringify(response.data));
+            await res.send({
+                success: true,
+                data: response.data,
+            });
         })
-    });
+        .catch(function (error) {
+            console.log(error);
 
+            res.send({
+                success: false,
+                data: error,
+            });
+        });
 }
 
-exports.execute = compress
+exports.execute = compress;
 
 //TEST
 
 // const http = require('http');
 // const formidable = require('formidable');
 // const fs = require('fs');
-  
+
 // http.createServer(function (req, res) {
 //     if (req.url == '/fileupload') {
 //         var form = new formidable.IncomingForm();
 //         form.parse(req, function (err, fields, files) {
-  
+
 //             var tempFilePath = files.filetoupload.filepath;
 //             var projectFilePath = __dirname + '/uploaded_file/' +
 //                 files.filetoupload.originalFilename;
@@ -67,7 +62,6 @@ exports.execute = compress
 //             });
 //         });
 
-        
 //     }
 //     else {
 //         res.writeHead(200, { 'Content-Type': 'text/html' });

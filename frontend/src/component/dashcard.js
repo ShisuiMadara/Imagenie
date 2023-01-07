@@ -38,9 +38,19 @@ export default class DashCard extends React.Component {
                     </div>
                 </div>
                 {this.state.isFormOpen ? (
-                    <div className="mt-6 w-full flex flex-col items-center">
-                        <CardForm title={this.props.title.toString()} config={this.props.Config} requestURL={this.props.requestURL} />
-                    </div>
+                    this.props.forms.map((item, index) => {
+                        return (
+                            <div
+                                className="mt-6 w-full flex flex-col items-center"
+                                key={`card_${this.props.title.toString().toLowerCase()}#${index}`}
+                            >
+                                <CardForm
+                                    title={this.props.title.toString().toLowerCase()}
+                                    config={item}
+                                />
+                            </div>
+                        );
+                    })
                 ) : (
                     <></>
                 )}
