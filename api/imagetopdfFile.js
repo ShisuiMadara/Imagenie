@@ -5,6 +5,8 @@ const fs = require('fs');
 
 async function convert (req,res) {
 
+    req = req.body.request
+    
     var objPath = req.objPath;
 
     const form = new FormData();

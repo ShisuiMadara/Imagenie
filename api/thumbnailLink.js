@@ -5,13 +5,18 @@ require('dotenv').config()
 
 async function thumbnail(req,res) {
     
-    req = req.body
+    req = req.body.request
 
     console.log(req)
 
     var config = {
         method: 'post',
-        url: 'https://api.apyhub.com/generate/image/thumbnail/url/file?output=thumbnail.png&height=' + req.height + '&width=' + req.width,
+        url: 'https://api.apyhub.com/generate/image/thumbnail/url/file',
+        params: {
+            'output': req.outputName,
+            'width': req.width,
+            'height': req.height
+        },
         headers: { 
             'apy-token': process.env.thumbnailToken, 
             'Content-Type': 'application/json'

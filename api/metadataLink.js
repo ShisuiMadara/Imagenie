@@ -5,7 +5,7 @@ require('dotenv').config()
 
 async function extract(req,res) {
     
-    req = req.body
+    req = req.body.request
 
     var config = {
         method: 'post',

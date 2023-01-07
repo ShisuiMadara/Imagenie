@@ -5,13 +5,18 @@ require('dotenv').config()
 
 async function crop(req,res) {
     
-    req = req.body
+    req = req.body.request
 
     console.log(req)
 
     var config = {
         method: 'post',
-        url: 'https://api.apyhub.com/processor/image/crop/url/file?output=test-sample.png&width=' + req.width + '&height=' + req.height,
+        url: 'https://api.apyhub.com/processor/image/crop/url/file',
+        params: {
+            'output': req.outputName,
+            'width': req.width,
+            'height': req.height
+        },
         headers: { 
             'apy-token': process.env.cropToken, 
             'Content-Type': 'application/json'

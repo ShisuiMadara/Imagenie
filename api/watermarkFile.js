@@ -6,6 +6,7 @@ const fs = require('fs');
 
 async function watermark (req,res) {
 
+    req = req.body.request
     var objPath = req.objPath
     var waterPath = req.waterPath
 
