@@ -39,7 +39,7 @@ const cards = [
     {
         title: "Convert Image to PDF.",
         description: "Store image as a PDF.",
-        color: "#f2f2f2",
+        color: "#f5cac2",
     },
 ];
 
