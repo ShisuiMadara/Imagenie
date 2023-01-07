@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import CustomForm from '../form/form.js';
 
 export default function CustomCard(props) {
 
@@ -24,7 +25,7 @@ export default function CustomCard(props) {
             </Typography>
         </CardContent>
         <CardActions>
-            <Button size="small">Execute</Button>
+            {/* <CustomForm /> */}
         </CardActions>
         </Card>
     )
