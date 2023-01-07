@@ -9,11 +9,14 @@ export default class Header extends React.Component {
             <div>
                 <Grid container className="shadow" padding={3}>
                     <Grid
+                        onClick={() => {
+                            window.location.href = "/";
+                        }}
                         padding={2}
                         item
                         xs={12}
                         lg={1}
-                        className="bg-logo bg-center bg-no-repeat bg-contain h-16"
+                        className="cursor-pointer bg-logo bg-center bg-no-repeat bg-contain h-16"
                     ></Grid>
                     <Grid item xs={12} lg={11} className="h-16">
                         <div className="h-full flex flex-row items-center">
@@ -22,8 +25,8 @@ export default class Header extends React.Component {
                                     <div
                                         className={
                                             this.props.isLoggedIn && this.props.user
-                                                ? "lg:w-30 mr-2 xs:w-1/2"
-                                                : "lg:w-30 mr-2 xs:w-0"
+                                                ? "lg:w-30 mr-2 xs:w-1/2 cursor-pointer"
+                                                : "lg:w-30 mr-2 xs:w-0 cursor-pointer"
                                         }
                                     >
                                         {this.props.isLoggedIn && this.props.user ? (
