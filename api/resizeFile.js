@@ -3,26 +3,26 @@ const axios = require('axios');
 const FormData = require('form-data');
 const fs = require('fs');
 
+async function resize (req,res) {
 
-async function watermark (req,res) {
-
-    var objPath = req.objPath
-    var waterPath = req.waterPath
+    var objPath = req.objPath;
 
     const form = new FormData();
-    form.append('image', fs.readFileSync(objPath), '"stock-photo.jpg"')
-    form.append('watermark', fs.readFileSync(waterPath), '"watermark-photo.jpg"')
+    form.append('image', fs.readFileSync(objPath), 'stock-photo.jpg');
 
     await axios.post(
-        'https://api.apyhub.com/processor/image/watermark/file',
+        'https://api.apyhub.com/processor/image/resize/file',
         form,
         {
             params: {
-                'output': req.outputName
+                'output': req.outputName,
+                'width': req.width,
+                'height': req.height
             },
             headers: {
                 ...form.getHeaders(),
-                'apy-token': process.env.watermarkToken
+                'apy-token': process.env.resizeToken,
+                'content-type': 'multipart/form-data',
             }
         }
     ).then(async function (response) {
@@ -43,4 +43,4 @@ async function watermark (req,res) {
 
 }
 
-exports.execute = watermark
+exports.execute = resize

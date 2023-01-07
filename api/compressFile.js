@@ -17,7 +17,7 @@ async function compress (req,res) {
         {
             params: {
                 'output': 'test-sample.png',
-                'quality': '90'
+                'quality': req.quality
             },
             headers: {
                 ...form.getHeaders(),

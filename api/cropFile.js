@@ -15,9 +15,9 @@ async function crop (req,res) {
         form,
         {
             params: {
-                'output': 'test-sample.png',
-                'width': '100',
-                'height': '100'
+                'output': req.outputName,
+                'width': req.width,
+                'height': req.height
             },
             headers: {
                 ...form.getHeaders(),
