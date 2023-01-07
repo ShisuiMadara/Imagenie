@@ -10,7 +10,7 @@ const client = require('twilio')(account_sid, account_token);
 
 async function sms (req,res) {
     client.messages.create({
-        to: req.phoneNum,
+        to: req.phone,
         from: '+1 205 839 4449',
         body: 'Hello, please find you image at ' + req.url
     }).then(res.send({
