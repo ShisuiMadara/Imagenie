@@ -16,7 +16,6 @@ async function watermark(req,res) {
         url: 'https://api.apyhub.com/processor/image/watermark/url/file?output=' + req.outputName,
         headers: { 
             'apy-token': process.env.watermarkToken, 
-            'Content-Type': 'application/json'
         },
         data : req
     };

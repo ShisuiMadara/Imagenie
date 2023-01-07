@@ -23,7 +23,7 @@ async function crop (req,res) {
             headers: {
                 ...form.getHeaders(),
                 'apy-token': process.env.cropToken,
-                'content-type': 'multipart/form-data',
+  
             }
         }
     ).then(async function (response) {

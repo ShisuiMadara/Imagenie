@@ -19,7 +19,7 @@ async function thumbnail(req,res) {
         },
         headers: { 
             'apy-token': process.env.thumbnailToken, 
-            'Content-Type': 'application/json'
+           
         },
         data : req
     };

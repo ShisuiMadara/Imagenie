@@ -14,7 +14,7 @@ async function crop(req,res) {
         url: 'https://api.apyhub.com/convert/image-url/pdf-file?output=' + req.outputName,
         headers: { 
             'apy-token': process.env.convertorToken, 
-            'Content-Type': 'application/json'
+          
         },
         data : req
     };

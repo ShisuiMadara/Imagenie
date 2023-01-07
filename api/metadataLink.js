@@ -12,7 +12,7 @@ async function extract(req,res) {
         url: 'https://api.apyhub.com/processor/image/metadata/file-urls',
         headers: { 
             'apy-token': process.env.metaToken, 
-            'Content-Type': 'application/json'
+         
         },
         data : req
     };

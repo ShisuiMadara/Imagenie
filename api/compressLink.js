@@ -12,13 +12,13 @@ async function compress(req,res) {
     var config = {
         method: 'post',
         url: 'https://api.apyhub.com/processor/image/compress/url/file',
+        
         params: {
             output: req.outputName,
             quality: req.quality,
         },
         headers: { 
             'apy-token': process.env.compressToken, 
-            'Content-Type': 'application/json'
         },
         data : req
     };

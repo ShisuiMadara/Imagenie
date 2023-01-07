@@ -19,7 +19,7 @@ async function crop(req,res) {
         },
         headers: { 
             'apy-token': process.env.resizeToken, 
-            'Content-Type': 'application/json'
+          
         },
         data : req
     };
