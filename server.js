@@ -1,6 +1,4 @@
 var express = require("express");
-var cookieSession = require("cookie-session");
-const { auth, requiresAuth } = require("express-openid-connect");
 var app = express();
 var bodyParser = require("body-parser");
 var cors = require("cors");
@@ -8,23 +6,6 @@ var dotenv = require("dotenv");
 // load env variables
 dotenv.config();
 // configure server for logging.
-app.use(
-    auth({
-        authRequired: false,
-        auth0Logout: true,
-        secret: process.env.SECRET || "TeStStRiNg321",
-        baseURL: "http://localhost:5000",
-        clientID: "mRi1pjQK6CLcRMyRJJ526bTUO2RBfwCH",
-        issuerBaseURL: "https://dev-wbsnn6gxoptvpdpg.us.auth0.com",
-    }),
-);
-app.use(
-    cookieSession({
-        name: "session",
-        keys: [process.env.PRIVATE_KEY || "lama"],
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-    }),
-);
 app.use(
     bodyParser.urlencoded({
         extended: false,
@@ -67,23 +48,10 @@ app.all("*", async (req, res, func) => {
             });
         }
     } else {
-        console.log(req.url);
-        if (req.url === "/") {
-            if (req.oidc.isAuthenticated()) {
-                res.redirect("http://localhost:3000/app");
-            } else {
-                res.redirect("http://localhost:3000/");
-            }
-        } else if (req.url === "/profile") {
-            if (requiresAuth()) {
-                res.send(JSON.stringify(req.oidc.user));
-            }
-        } else {
-            res.status(404).json({
-                success: false,
-                message: "Page not found ! ",
-            });
-        }
+        res.status(404).json({
+            success: false,
+            message: "Page not found ! ",
+        });
     }
 });
 // run server.

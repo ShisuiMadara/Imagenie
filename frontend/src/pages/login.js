@@ -1,15 +1,17 @@
 import react from "react";
-import GoogleIcon from "@mui/icons-material/Google";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import TextField from "@mui/material/TextField";
-import { Button, Chip, Divider, Grid } from "@mui/material";
+import { Button, Chip, Divider, Grid, Tab, Tabs } from "@mui/material";
 import logo from "../static/logo.png";
 import NotificationDrop from "../component/NotificationDrop";
+import Auth0LoginButton from "../component/auth0button";
 
 const validators = {
     email: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+/gi,
     password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/gi,
+    name: /([A-Z a-z]+)/gi,
+    username: /([A-Za-z0-9@.#$!&^+_=`~?"';:]+)/gi,
 };
 
 export default class Login extends react.Component {
@@ -65,23 +67,72 @@ export default class Login extends react.Component {
             }
         }
     };
+    handleNameChange = (event) => {
+        if (
+            event.target.value == null ||
+            event.target.value === undefined ||
+            event.target.value === ""
+        ) {
+            this.setState({
+                isNameValid: false,
+            });
+        } else {
+            const matches = event.target.value.toString().match(validators[event.target.name]);
+            if (matches == null || matches === undefined || matches.length !== 1) {
+                this.setState({
+                    isNameValid: false,
+                });
+            } else {
+                this.setState({
+                    isNameValid: true,
+                });
+            }
+        }
+    };
+    handleUsernameChange = (event) => {
+        if (
+            event.target.value == null ||
+            event.target.value === undefined ||
+            event.target.value === ""
+        ) {
+            this.setState({
+                isUsernameValid: false,
+            });
+        } else {
+            const matches = event.target.value.toString().match(validators[event.target.name]);
+            if (matches == null || matches === undefined || matches.length !== 1) {
+                this.setState({
+                    isUsernameValid: false,
+                });
+            } else {
+                this.setState({
+                    isUsernameValid: true,
+                });
+            }
+        }
+    };
     notificationTimeoutAction = () => {
         this.setState({
             Notification: "",
             NotificationType: "",
         });
     };
-    auth0 = () => {
-        window.open("http://localhost:5000/login", "_self");
-    }
+    toggleMode = () => {
+        this.setState({
+            mode: 1 - this.state.mode,
+        });
+    };
     constructor(props) {
         super(props);
         this.state = {
+            mode: 0,
             Notification: "",
             NotificationType: "",
             isPassVisible: false,
             isPasswordValid: false,
             isEmailValid: false,
+            isNameValid: false,
+            isUsernameValid: false,
         };
     }
     render() {
@@ -113,24 +164,50 @@ export default class Login extends react.Component {
                                     <Divider />
                                 </Grid>
                                 <Grid item xs={12} padding={{ xs: 1, sm: 2 }} textalign="center">
-                                    <Button
-                                        onClick={this.auth0}
-                                        style={{ backgroundColor: "red" }}
-                                        className="w-full"
-                                    >
-                                        <span className="p-2 text-white" textalign="center">
-                                            <span>
-                                                <GoogleIcon fontSize="large" />
-                                            </span>
-                                            <span className="m-5">SIGN IN WITH GOOGLE</span>
-                                        </span>
-                                    </Button>
+                                    <Auth0LoginButton />
                                 </Grid>
                                 <Grid item xs={12} padding={{ xs: 1, sm: 2 }}>
                                     <Divider>
                                         <Chip label="OR" />
                                     </Divider>
                                 </Grid>
+                                <Grid item xs={12} padding={{ xs: 1, sm: 2 }}>
+                                    <Tabs
+                                        className="w-full"
+                                        value={this.state.mode}
+                                        onChange={this.toggleMode}
+                                        aria-label="basic tabs example"
+                                    >
+                                        <Tab className="w-1/2" label="Login" />
+                                        <Tab className="w-1/2" label="Sign up" />
+                                    </Tabs>
+                                </Grid>
+                                {this.state.mode === 1 ? (
+                                    <>
+                                        <Grid item xs={12} padding={{ xs: 1, sm: 2 }}>
+                                            <TextField
+                                                onChange={this.handleNameChange}
+                                                className="w-full"
+                                                label="Name"
+                                                variant="outlined"
+                                                name="Name"
+                                                placeholder="Tejaswi Bishnoi"
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12} padding={{ xs: 1, sm: 2 }}>
+                                            <TextField
+                                                onChange={this.handleUsernameChange}
+                                                className="w-full"
+                                                label="Username"
+                                                variant="outlined"
+                                                name="username"
+                                                placeholder="ghostfacegangsta"
+                                            />
+                                        </Grid>
+                                    </>
+                                ) : (
+                                    <></>
+                                )}
                                 <Grid item xs={12} padding={{ xs: 1, sm: 2 }}>
                                     <TextField
                                         onChange={this.handleEmailChange}
@@ -171,21 +248,31 @@ export default class Login extends react.Component {
                                 </Grid>
                                 <Grid item xs={12} padding={{ xs: 1, sm: 2 }}>
                                     <Button
+                                        type="submit"
                                         className="w-full"
                                         style={{
                                             backgroundColor:
                                                 this.state.isPasswordValid &&
-                                                this.state.isEmailValid
+                                                this.state.isEmailValid &&
+                                                (this.state.mode === 0 ||
+                                                    (this.state.isNameValid &&
+                                                        this.state.isUsernameValid))
                                                     ? "red"
                                                     : "lightgray",
                                         }}
                                         disabled={
-                                            this.state.isPasswordValid && this.state.isEmailValid
+                                            this.state.isPasswordValid &&
+                                            this.state.isEmailValid &&
+                                            (this.state.mode === 0 ||
+                                                (this.state.isNameValid &&
+                                                    this.state.isUsernameValid))
                                                 ? false
                                                 : true
                                         }
                                     >
-                                        <span className="p-3 text-white">Login</span>
+                                        <span className="p-3 text-white">
+                                            {this.state.mode === 0 ? "Login" : "Sign up"}
+                                        </span>
                                     </Button>
                                 </Grid>
                             </Grid>
@@ -195,4 +282,5 @@ export default class Login extends react.Component {
             </div>
         );
     }
+    componentDidMount() {}
 }
