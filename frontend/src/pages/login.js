@@ -5,6 +5,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import TextField from "@mui/material/TextField";
 import { Button, Chip, Divider, Grid } from "@mui/material";
 import logo from "../static/logo.png";
+import NotificationDrop from "../component/NotificationDrop";
 
 const validators = {
     email: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+/gi,
@@ -64,18 +65,35 @@ export default class Login extends react.Component {
             }
         }
     };
+    notificationTimeoutAction = () => {
+        this.setState({
+            Notification: "",
+            NotificationType: "",
+        });
+    };
+    auth0 = () => {
+        window.open("http://localhost:5000/login", "_self");
+    }
     constructor(props) {
         super(props);
         this.state = {
+            Notification: "",
+            NotificationType: "",
             isPassVisible: false,
             isPasswordValid: false,
             isEmailValid: false,
         };
     }
-    render(props) {
+    render() {
         return (
             <div className="flex flex-row bg-login items-center h-screen bg-cover bg-no-repeat">
                 <div className="flex-grow flex flex-col items-center backdrop-blur">
+                    <NotificationDrop
+                        timeout={5000}
+                        timeoutFn={this.notificationTimeoutAction}
+                        type={this.state.NotificationType}
+                        message={this.state.Notification}
+                    />
                     <div className="flex-grow">
                         <form onSubmit={this.handleSubmit}>
                             <Grid
@@ -94,13 +112,13 @@ export default class Login extends react.Component {
                                 <Grid item xs={12} padding={{ xs: 1, sm: 2 }}>
                                     <Divider />
                                 </Grid>
-                                <Grid item xs={12} padding={{ xs: 1, sm: 2 }} textAlign="center">
+                                <Grid item xs={12} padding={{ xs: 1, sm: 2 }} textalign="center">
                                     <Button
-                                        href="http://localhost:5000/api/auth"
+                                        onClick={this.auth0}
                                         style={{ backgroundColor: "red" }}
                                         className="w-full"
                                     >
-                                        <span className="p-2 text-white" textAlign="center">
+                                        <span className="p-2 text-white" textalign="center">
                                             <span>
                                                 <GoogleIcon fontSize="large" />
                                             </span>
