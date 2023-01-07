@@ -11,7 +11,7 @@ const client = require('twilio')(account_sid, account_token);
 async function sms (req,res) {
     client.messages 
       .create({ 
-         body: 'Hello, please find your final image at ' + req.url, 
+         body: 'Your image optimization has been completed.', 
          from: 'whatsapp:+14155238886',       
          to: 'whatsapp:'+req.phone
        }) 
