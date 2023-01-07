@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/home";
-import Login from "./pages/login";
+import Home from "./views/home";
 
 export default function App() {
     return (
@@ -9,7 +8,6 @@ export default function App() {
                 <Route path="/">
                     <Route index element={<Home />} />
                     <Route path="home" element={<Home />} />
-                    <Route path="login" element={<Login />} />
                     <Route path="app" element={<></>} />
                     <Route path="*" element={<>no page found</>} />
                 </Route>

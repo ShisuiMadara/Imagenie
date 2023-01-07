@@ -10,6 +10,7 @@ module.exports = {
         extend: {
             backgroundImage: {
                 login: "url('../src/static/loginBack.jpg')",
+                logo: "url('../src/static/logo.png')",
             },
         },
     },
