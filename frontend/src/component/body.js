@@ -101,7 +101,7 @@ export default class Body extends React.Component {
                     </div>
                 </Grid>
                 <Grid item xs={12}>
-                    <Grid container>
+                    <Grid container justifyContent={"center"}>
                         <Grid
                             padding={5}
                             marginTop={-15}
