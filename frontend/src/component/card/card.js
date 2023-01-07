@@ -8,7 +8,6 @@ import Typography from '@mui/material/Typography';
 import CustomForm from '../form/form.js';
 
 export default function CustomCard(props) {
-
     return (
         <Card sx={{ maxWidth: 345 }}>
         <CardMedia

@@ -9,37 +9,37 @@ const cards = [
     {
         title: "Metadata",
         description: "Extract metadata from your images.",
-        color: "darkblue",
+        color: "#397754",
     },
     {
         title: "Crop Image",
         description: "Crop your image as you wish.",
-        color: "red",
+        color: "#f0a3bc",
     },
     {
         title: "Compress Image",
         description: "Compress image to save space.",
-        color: "green",
+        color: "#70be51",
     },
     {
         title: "Thumbnail",
         description: "Create thumbnails from your image.",
-        color: "yellow",
+        color: "#eb6b40",
     },
     {
         title: "Watermark",
         description: "Add watermark to your image.",
-        color: "darkred",
+        color: "#9b45b2",
     },
     {
         title: "Resize",
         description: "Resize your image.",
-        color: "blue",
+        color: "#fcde67",
     },
     {
         title: "Convert Image to PDF.",
         description: "Store image as a PDF.",
-        color: "violet",
+        color: "#f2f2f2",
     },
 ];
 
