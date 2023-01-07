@@ -1,7 +1,6 @@
 require("dotenv").config();
 const axios = require("axios");
 const FormData = require("form-data");
-const formidable = require("formidable");
 const fs = require("fs");
 
 async function compress(req, res) {
