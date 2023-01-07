@@ -12,7 +12,7 @@ async function sms (req,res) {
     client.messages.create({
         to: req.phone,
         from: '+1 205 839 4449',
-        body: 'Hello, please find you image at ' + req.url
+        body: 'The image optimization is completed.'
     }).then(res.send({
         success:true,
         data: "Message sent successfully"
