@@ -6,27 +6,27 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-const card =  (props) => {
-  return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        image={props.url}
-        title={props.title}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {props.title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {props.description}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Execute</Button>
-      </CardActions>
-    </Card>
-  );
-}
+export default function CustomCard(props) {
 
-export default card
+    return (
+        <Card sx={{ maxWidth: 345 }}>
+        <CardMedia
+            sx={{ height: 140 }}
+            image={props.url}
+            title={props.title}
+        />
+        <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+            {props.title}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+            {props.description}
+            </Typography>
+        </CardContent>
+        <CardActions>
+            <Button size="small">Execute</Button>
+        </CardActions>
+        </Card>
+    )
+  
+}
