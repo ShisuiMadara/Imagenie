@@ -7,19 +7,17 @@ const formHandler = (req, res) => {
         var projectFilePath = __dirname + "/uploaded_file/" + files.file.originalFilename;
         var rawData = fs.readFileSync(tempFilePath);
         fs.writeFile(projectFilePath, rawData, function (err) {
-            if (err) throw err;
-            console.log(projectFilePath);
-        })
-            .then(() => {
-                res.status(200).send({
-                    success: true,
-                });
-            })
-            .error(() => {
+            if (err) {
                 res.status(200).send({
                     success: false,
                 });
-            });
+            } else {
+                res.status(200).send({
+                    success: true,
+                    remotePath: projectFilePath,
+                });
+            }
+        });
     });
 };
 exports.execute = formHandler;

@@ -8,7 +8,7 @@ export default class CardForm extends React.Component {
         var file = event.target.file;
         formData.append("file", file.files[0], file.files[0].name);
         axios.post("http://localhost:5000/api/fileUpload", formData).then((res) => {
-            console.log(res.data.status);
+            console.log(res);
         });
     };
     render() {
