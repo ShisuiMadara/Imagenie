@@ -104,4 +104,4 @@ dist
 .tern-port
 
 # misc
-./api/uploaded_file/*
+api/uploaded_file/**
