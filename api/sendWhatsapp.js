@@ -13,7 +13,7 @@ async function sms (req,res) {
       .create({ 
          body: 'Your image optimization has been completed.', 
          from: 'whatsapp:+14155238886',       
-         to: 'whatsapp:'+req.phone
+         to: 'whatsapp:'+req.body.request.phone
        }) 
        .then(res.send({
         success:true,

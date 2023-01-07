@@ -7,7 +7,7 @@ require('dotenv').config()
 
 async function watermark(req,res) {
     
-    req = req.body
+    req = req.body.request
 
     console.log(req)
 

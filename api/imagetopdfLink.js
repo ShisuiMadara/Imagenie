@@ -5,7 +5,7 @@ require('dotenv').config()
 
 async function crop(req,res) {
     
-    req = req.body
+    req = req.body.request
 
     console.log(req)
 

@@ -5,13 +5,17 @@ require('dotenv').config()
 
 async function compress(req,res) {
     
-    req = req.body
+    req = req.body.request
 
     console.log(req)
 
     var config = {
         method: 'post',
-        url: 'https://api.apyhub.com/processor/image/compress/url/file?output=test-sample.png&quality=90',
+        url: 'https://api.apyhub.com/processor/image/compress/url/file',
+        params: {
+            output: req.outputName,
+            quality: req.quality,
+        },
         headers: { 
             'apy-token': process.env.compressToken, 
             'Content-Type': 'application/json'
