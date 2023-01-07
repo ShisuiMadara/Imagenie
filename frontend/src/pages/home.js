@@ -1,5 +1,5 @@
 import react from "react";
-import CustomCard from "../component/card.js"
+import CustomCard from "../component/card/card.js"
 
 export default class Home extends react.Component {
     render(props) {
