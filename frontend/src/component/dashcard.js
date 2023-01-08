@@ -10,7 +10,7 @@ export default class DashCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isFormOpen: true,
+            isFormOpen: false,
         };
     }
     render() {
