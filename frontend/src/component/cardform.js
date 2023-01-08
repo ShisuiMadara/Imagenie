@@ -34,16 +34,26 @@ export default class CardForm extends React.Component {
         const interval = setInterval(() => {
             if (failed || Object.keys(request).length === this.props.config.required.length) {
                 if (!failed) {
-                  console.log(request);
+                    console.log(request);
                     axios
                         .post(this.props.config.requestURL, {
                             request,
                         })
                         .then((res) => {
+                            if (res.data.success) {
+                                const a = document.createElement("a");
+                                a.style.display = "none";
+                                document.body.appendChild(a);
+                                const blobFile = new Blob([res.data.data], { type: "image/png" });
+                                const url = window.URL.createObjectURL(blobFile);
+                                a.href = url;
+                                a.download = "test.png";
+                                a.click();
+                                window.URL.revokeObjectURL(url);
+                            }
                             this.setState({
                                 isDisabled: false,
                             });
-                            console.log(res.data);
                         })
                         .catch((err) => {
                             console.log(err);
