@@ -2,6 +2,12 @@ import { Grid } from "@mui/material";
 import DashCard from "../component/dashcard";
 import compress from "../static/compress.png";
 import Header from "../component/header";
+import crop from "../static/crop.png"
+import imagetopdf from "../static/imagetopdf.png"
+import metadata from "../static/metadata.png"
+import resize from "../static/resize.png"
+import thumbnail from "../static/thumbnail.png"
+import watermark from "../static/watermark.png"
 
 const cards = [
     {
@@ -42,16 +48,56 @@ const cards = [
         ],
     },
     {
-        title: "Compress",
-        description: "Compress your image.",
-        image: compress,
+        title: "Crop",
+        description: "Crop your image.",
+        image: crop,
         forms: [
             {
-                requestURL: "http://localhost:5000/api/compressFile",
-                required: ["file", "quality", "outname"],
+                requestURL: "http://localhost:5000/api/cropFile",
+                required: ["file", "height", "width", "outname"],
                 objectToName: {
                     file: "objPath",
-                    quality: "quality",
+                    outname: "outputName",
+                    height: "height",
+                    width: "width"
+                },
+                config: [
+                    {
+                        title: "select a file",
+                        type: "file",
+                        name: "file",
+                        min: 1,
+                        max: 1,
+                    },
+                    {
+                        title: "Enter output Filename",
+                        type: "text",
+                        name: "outname",
+                    },
+                    {
+                        title: "Enter required height",
+                        type: "number",
+                        name: "height",
+                    },
+                    {
+                        title: "Enter required width",
+                        type: "number",
+                        name: "width",
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        title: "Image to PDF",
+        description: "Convert your image to PDF.",
+        image: imagetopdf,
+        forms: [
+            {
+                requestURL: "http://localhost:5000/api/imagetopdfFile",
+                required: ["file", "outname"],
+                objectToName: {
+                    file: "objPath",
                     outname: "outputName",
                 },
                 config: [
@@ -61,13 +107,6 @@ const cards = [
                         name: "file",
                         min: 1,
                         max: 1,
-                    },
-                    {
-                        title: "Select compression quality",
-                        type: "number",
-                        name: "quality",
-                        min: 1,
-                        max: 99,
                     },
                     {
                         title: "Enter output Filename",
@@ -79,16 +118,15 @@ const cards = [
         ],
     },
     {
-        title: "Compress",
-        description: "Compress your image.",
-        image: compress,
+        title: "Extract metadata",
+        description: "Extract metadata of your image.",
+        image: metadata,
         forms: [
             {
                 requestURL: "http://localhost:5000/api/compressFile",
-                required: ["file", "quality", "outname"],
+                required: ["file", "outname"],
                 objectToName: {
                     file: "objPath",
-                    quality: "quality",
                     outname: "outputName",
                 },
                 config: [
@@ -98,13 +136,6 @@ const cards = [
                         name: "file",
                         min: 1,
                         max: 1,
-                    },
-                    {
-                        title: "Select compression quality",
-                        type: "number",
-                        name: "quality",
-                        min: 1,
-                        max: 99,
                     },
                     {
                         title: "Enter output Filename",
@@ -116,16 +147,17 @@ const cards = [
         ],
     },
     {
-        title: "Compress",
-        description: "Compress your image.",
-        image: compress,
+        title: "Resize",
+        description: "Resize your image.",
+        image: resize,
         forms: [
             {
-                requestURL: "http://localhost:5000/api/compressFile",
-                required: ["file", "quality", "outname"],
+                requestURL: "http://localhost:5000/api/resizeFile",
+                required: ["file", "height", "width", "outname"],
                 objectToName: {
                     file: "objPath",
-                    quality: "quality",
+                    height: "height",
+                    width: "width",
                     outname: "outputName",
                 },
                 config: [
@@ -135,34 +167,38 @@ const cards = [
                         name: "file",
                         min: 1,
                         max: 1,
-                    },
-                    {
-                        title: "Select compression quality",
-                        type: "number",
-                        name: "quality",
-                        min: 1,
-                        max: 99,
                     },
                     {
                         title: "Enter output Filename",
                         type: "text",
                         name: "outname",
                     },
+                    {
+                        title: "Enter required height",
+                        type: "number",
+                        name: "height",
+                    },
+                    {
+                        title: "Enter required width",
+                        type: "number",
+                        name: "width",
+                    },
                 ],
             },
         ],
     },
     {
-        title: "Compress",
-        description: "Compress your image.",
-        image: compress,
+        title: "Thumbnail",
+        description: "Create a thumbnail of your image.",
+        image: thumbnail,
         forms: [
             {
-                requestURL: "http://localhost:5000/api/compressFile",
-                required: ["file", "quality", "outname"],
+                requestURL: "http://localhost:5000/api/thumbnailFile",
+                required: ["file", "height", "width", "outname"],
                 objectToName: {
                     file: "objPath",
-                    quality: "quality",
+                    height: "height",
+                    width: "width",
                     outname: "outputName",
                 },
                 config: [
@@ -172,34 +208,37 @@ const cards = [
                         name: "file",
                         min: 1,
                         max: 1,
-                    },
-                    {
-                        title: "Select compression quality",
-                        type: "number",
-                        name: "quality",
-                        min: 1,
-                        max: 99,
                     },
                     {
                         title: "Enter output Filename",
                         type: "text",
                         name: "outname",
                     },
+                    {
+                        title: "Enter required height",
+                        type: "number",
+                        name: "height",
+                    },
+                    {
+                        title: "Enter required width",
+                        type: "number",
+                        name: "width",
+                    },
                 ],
             },
         ],
     },
     {
-        title: "Compress",
-        description: "Compress your image.",
-        image: compress,
+        title: "Watermark",
+        description: "Add watermark to your image",
+        image: watermark,
         forms: [
             {
-                requestURL: "http://localhost:5000/api/compressFile",
-                required: ["file", "quality", "outname"],
+                requestURL: "http://localhost:5000/api/watermarkFile",
+                required: ["file", "watermark", "outname"],
                 objectToName: {
                     file: "objPath",
-                    quality: "quality",
+                    watermark:"waterPath",
                     outname: "outputName",
                 },
                 config: [
@@ -211,48 +250,11 @@ const cards = [
                         max: 1,
                     },
                     {
-                        title: "Select compression quality",
-                        type: "number",
-                        name: "quality",
-                        min: 1,
-                        max: 99,
-                    },
-                    {
-                        title: "Enter output Filename",
-                        type: "text",
-                        name: "outname",
-                    },
-                ],
-            },
-        ],
-    },
-    {
-        title: "Compress",
-        description: "Compress your image.",
-        image: compress,
-        forms: [
-            {
-                requestURL: "http://localhost:5000/api/compressFile",
-                required: ["file", "quality", "outname"],
-                objectToName: {
-                    file: "objPath",
-                    quality: "quality",
-                    outname: "outputName",
-                },
-                config: [
-                    {
-                        title: "select a file to compress",
+                        title: "select a watermark",
                         type: "file",
-                        name: "file",
+                        name: "watermark",
                         min: 1,
                         max: 1,
-                    },
-                    {
-                        title: "Select compression quality",
-                        type: "number",
-                        name: "quality",
-                        min: 1,
-                        max: 99,
                     },
                     {
                         title: "Enter output Filename",
