@@ -48,7 +48,6 @@ export default class CardForm extends React.Component {
                                 a.href = res.data.data;
                                 a.download = `${request.outputName}${res.data.type}`;
                                 a.click();
-                                window.location.reload();
                             }
                             this.setState({
                                 isDisabled: false,
