@@ -123,7 +123,7 @@ const cards = [
         image: metadata,
         forms: [
             {
-                requestURL: "http://localhost:5000/api/compressFile",
+                requestURL: "http://localhost:5000/api/metadataFile",
                 required: ["file", "outname"],
                 objectToName: {
                     file: "objPath",
