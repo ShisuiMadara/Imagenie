@@ -13,7 +13,7 @@ async function thumbnail (req,res) {
     form.append('image', fs.readFileSync(objPath), 'stock-photo.jpg');
 
     await axios.post(
-        'https://api.apyhub.com/generate/image/thumbnail/file',
+        'https://api.apyhub.com/generate/image/thumbnail/file/url',
         form,
         {
             params: {

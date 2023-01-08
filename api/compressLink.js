@@ -11,7 +11,7 @@ async function compress(req,res) {
 
     var config = {
         method: 'post',
-        url: 'https://api.apyhub.com/processor/image/compress/url/file',
+        url: 'https://api.apyhub.com/processor/image/compress/file-urls',
         
         params: {
             output: req.outputName+'.png',
