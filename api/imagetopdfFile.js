@@ -17,7 +17,7 @@ async function convert (req,res) {
         form,
         {
             params: {
-                'output': req.outputName,
+                'output': req.outputName + '.pdf',
             },
             headers: {
                 ...form.getHeaders(),
@@ -29,7 +29,8 @@ async function convert (req,res) {
         console.log(JSON.stringify(response.data));
         await res.send({
             sucess:true,
-            data: response.data
+            data: response.data,
+            type: '.pdf'
         })
     })
     .catch(function (error) {

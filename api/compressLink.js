@@ -14,7 +14,7 @@ async function compress(req,res) {
         url: 'https://api.apyhub.com/processor/image/compress/url/file',
         
         params: {
-            output: req.outputName,
+            output: req.outputName+'.png',
             quality: req.quality,
         },
         headers: { 
@@ -28,7 +28,8 @@ async function compress(req,res) {
         console.log(JSON.stringify(response.data));
         await res.send({
             sucess:true,
-            data: response.data
+            data: response.data,
+            type: '.png'
         })
     })
     .catch(function (error) {

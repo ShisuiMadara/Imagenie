@@ -19,7 +19,7 @@ async function watermark (req,res) {
         form,
         {
             params: {
-                'output': req.outputName
+                'output': req.outputName + '.png'
             },
             headers: {
                 ...form.getHeaders(),
@@ -30,7 +30,8 @@ async function watermark (req,res) {
         console.log(JSON.stringify(response.data));
         await res.send({
             sucess:true,
-            data: response.data
+            data: response.data,
+            type: '.png'
         })
     })
     .catch(function (error) {

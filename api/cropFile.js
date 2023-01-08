@@ -16,7 +16,7 @@ async function crop (req,res) {
         form,
         {
             params: {
-                'output': req.outputName,
+                'output': req.outputName+'.png',
                 'width': req.width,
                 'height': req.height
             },
@@ -30,7 +30,8 @@ async function crop (req,res) {
         console.log(JSON.stringify(response.data));
         await res.send({
             sucess:true,
-            data: response.data
+            data: response.data,
+            type: '.png'
         })
     })
     .catch(function (error) {
