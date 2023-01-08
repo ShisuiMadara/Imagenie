@@ -16,9 +16,9 @@ export default class DashCard extends React.Component {
     render() {
         return (
             <div className="flex flex-col shadow-xl w-full p-7 rounded-xl font-mono bg-slate-50">
-                <div className="w-full mb-4">
+                <div className="w-full h-28 mb-4 overflow-hidden items-center flex flex-col">
                     <img
-                        className="rounded-xl shadow-md"
+                        className="rounded-xl h-full shadow-md w-auto aspect-auto"
                         src={this.props.image}
                         alt={this.props.title}
                     />
