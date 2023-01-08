@@ -17,7 +17,7 @@ const cards = [
         image: compress,
         forms: [
             {
-                requestURL: "http://localhost:5000/api/compressFile",
+                requestURL: "https://imagenie.bidhuri.repl.co/api/compressFile",
                 required: ["file", "quality", "outname"],
                 objectToName: {
                     file: "objPath",
@@ -54,7 +54,7 @@ const cards = [
         image: crop,
         forms: [
             {
-                requestURL: "http://localhost:5000/api/cropFile",
+                requestURL: "https://imagenie.bidhuri.repl.co/api/cropFile",
                 required: ["file", "height", "width", "outname"],
                 objectToName: {
                     file: "objPath",
@@ -95,7 +95,7 @@ const cards = [
         image: imagetopdf,
         forms: [
             {
-                requestURL: "http://localhost:5000/api/imagetopdfFile",
+                requestURL: "https://imagenie.bidhuri.repl.co/api/imagetopdfFile",
                 required: ["file", "outname"],
                 objectToName: {
                     file: "objPath",
@@ -124,7 +124,7 @@ const cards = [
         image: metadata,
         forms: [
             {
-                requestURL: "http://localhost:5000/api/metadataFile",
+                requestURL: "https://imagenie.bidhuri.repl.co/api/metadataFile",
                 required: ["file", "outname"],
                 objectToName: {
                     file: "objPath",
@@ -153,7 +153,7 @@ const cards = [
         image: resize,
         forms: [
             {
-                requestURL: "http://localhost:5000/api/resizeFile",
+                requestURL: "https://imagenie.bidhuri.repl.co/api/resizeFile",
                 required: ["file", "height", "width", "outname"],
                 objectToName: {
                     file: "objPath",
@@ -194,7 +194,7 @@ const cards = [
         image: thumbnail,
         forms: [
             {
-                requestURL: "http://localhost:5000/api/thumbnailFile",
+                requestURL: "https://imagenie.bidhuri.repl.co/api/thumbnailFile",
                 required: ["file", "height", "width", "outname"],
                 objectToName: {
                     file: "objPath",
@@ -235,7 +235,7 @@ const cards = [
         image: watermark,
         forms: [
             {
-                requestURL: "http://localhost:5000/api/watermarkFile",
+                requestURL: "https://imagenie.bidhuri.repl.co/api/watermarkFile",
                 required: ["file", "watermark", "outname"],
                 objectToName: {
                     file: "objPath",
@@ -283,7 +283,7 @@ const Dashboard = () => {
             alert("Invalid phone number.");
         } else {
             axios
-                .post("http://localhost:5000/api/sendsms", request)
+                .post("https://imagenie.bidhuri.repl.co/api/sendsms", request)
                 .then((res) => {
                     if (res.data.success) {
                         alert("Message sent successfully.");
@@ -305,7 +305,7 @@ const Dashboard = () => {
             alert("Invalid phone number.");
         } else {
             axios
-                .post("http://localhost:5000/api/sendWhatsapp", request)
+                .post("https://imagenie.bidhuri.repl.co/api/sendWhatsapp", request)
                 .then((res) => {
                     if (res.data.success) {
                         alert("Message sent successfully.");

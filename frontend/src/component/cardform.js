@@ -16,14 +16,16 @@ export default class CardForm extends React.Component {
                     var file = event.target[id];
                     console.log(`uploading ${file.files[0].name}`);
                     formData.append("file", file.files[0], file.files[0].name);
-                    axios.post("http://localhost:5000/api/fileUpload", formData).then((res) => {
-                        if (res.data.success) {
-                            console.log("done");
-                            request[this.props.config.objectToName[id]] = res.data.remotePath;
-                        } else {
-                            failed = true;
-                        }
-                    });
+                    axios
+                        .post("https://imagenie.bidhuri.repl.co/api/fileUpload", formData)
+                        .then((res) => {
+                            if (res.data.success) {
+                                console.log("done");
+                                request[this.props.config.objectToName[id]] = res.data.remotePath;
+                            } else {
+                                failed = true;
+                            }
+                        });
                 } else {
                     request[this.props.config.objectToName[id]] = event.target[id].value;
                 }
