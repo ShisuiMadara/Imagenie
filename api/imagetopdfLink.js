@@ -11,7 +11,7 @@ async function crop(req,res) {
 
     var config = {
         method: 'post',
-        url: 'https://api.apyhub.com/convert/image-url/pdf-file?output=' + req.outputName,
+        url: 'https://api.apyhub.com/convert/image-url/pdf-file?output=' + req.outputName + '.pdf',
         headers: { 
             'apy-token': process.env.convertorToken, 
           
@@ -24,7 +24,8 @@ async function crop(req,res) {
         console.log(JSON.stringify(response.data));
         await res.send({
             sucess:true,
-            data: response.data
+            data: response.data,
+            type: '.pdf'
         })
     })
     .catch(function (error) {
