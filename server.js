@@ -7,7 +7,7 @@ var dotenv = require("dotenv");
 dotenv.config();
 // configure server for logging.
 app.use(
-    bodyParser.urlencoded({
+    bodyParser.urlencoded({ 
         extended: false,
     }),
 );
