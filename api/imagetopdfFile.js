@@ -13,7 +13,7 @@ async function convert (req,res) {
     form.append('image', fs.readFileSync(objPath), 'stock-photo.jpg');
 
     await axios.post(
-        'https://api.apyhub.com/convert/image-file/pdf-file',
+        'https://api.apyhub.com/convert/image-file/pdf-url',
         form,
         {
             params: {

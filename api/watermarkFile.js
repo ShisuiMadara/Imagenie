@@ -15,7 +15,7 @@ async function watermark (req,res) {
     form.append('watermark', fs.readFileSync(waterPath), '"watermark-photo.jpg"')
 
     await axios.post(
-        'https://api.apyhub.com/processor/image/watermark/file',
+        'https://api.apyhub.com/processor/image/watermark/file/url',
         form,
         {
             params: {

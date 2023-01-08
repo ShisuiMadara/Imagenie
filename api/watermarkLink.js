@@ -13,7 +13,11 @@ async function watermark(req,res) {
 
     var config = {
         method: 'post',
-        url: 'https://api.apyhub.com/processor/image/watermark/url/file?output=' + req.outputName + '.png',
+        url: 'https://api.apyhub.com/processor/image/watermark/file-urls' ,
+        params: {
+            'output': req.outputName + '.png'
+        },
+        
         headers: { 
             'apy-token': process.env.watermarkToken, 
         },

@@ -11,7 +11,7 @@ async function thumbnail(req,res) {
 
     var config = {
         method: 'post',
-        url: 'https://api.apyhub.com/generate/image/thumbnail/url/file',
+        url: 'https://api.apyhub.com/generate/image/thumbnail/file-urls',
         params: {
             'output': req.outputName + '.png',
             'width': req.width,

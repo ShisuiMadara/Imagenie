@@ -13,7 +13,7 @@ async function resize (req,res) {
     form.append('image', fs.readFileSync(objPath), 'stock-photo.jpg');
 
     await axios.post(
-        'https://api.apyhub.com/processor/image/resize/file',
+        'https://api.apyhub.com/processor/image/resize/file/urls',
         form,
         {
             params: {

@@ -11,7 +11,7 @@ async function crop(req,res) {
 
     var config = {
         method: 'post',
-        url: 'https://api.apyhub.com/processor/image/resize/url/file',
+        url: 'https://api.apyhub.com/processor/image/resize/file-urls',
         params: {
             'output': req.outputName+'.png',
             'width': req.width,

@@ -12,7 +12,7 @@ async function crop (req,res) {
     form.append('image', fs.readFileSync(objPath), 'stock-photo.jpg');
 
     await axios.post(
-        'https://api.apyhub.com/processor/image/crop/file',
+        'https://api.apyhub.com/processor/image/crop/file/url',
         form,
         {
             params: {
