@@ -11,7 +11,7 @@ root.render(
         <Auth0Provider
             domain={process.env.REACT_APP_DOMAIN}
             clientId={process.env.REACT_APP_CLIENT_ID}
-            redirectUri={"http://localhost:3000"}
+            redirectUri={"https://imagenie.vercel.app"}
         >
             <App />
         </Auth0Provider>
