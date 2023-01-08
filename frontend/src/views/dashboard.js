@@ -124,10 +124,9 @@ const cards = [
         forms: [
             {
                 requestURL: "http://localhost:5000/api/compressFile",
-                required: ["file", "quality", "outname"],
+                required: ["file", "outname"],
                 objectToName: {
                     file: "objPath",
-                    quality: "quality",
                     outname: "outputName",
                 },
                 config: [
