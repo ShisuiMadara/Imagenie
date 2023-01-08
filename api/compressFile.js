@@ -9,7 +9,7 @@ async function compress(req, res) {
     form.append("image", fs.readFileSync(objPath), "stock-photo.jpg");
 
     await axios
-        .post("https://api.apyhub.com/processor/image/compress/file", form, {
+        .post("https://api.apyhub.com/processor/image/compress/file/url", form, {
             params: {
                 output: req.body.request.outputName + '.png',
                 quality: req.body.request.quality,
