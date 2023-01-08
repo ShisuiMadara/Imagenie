@@ -1,13 +1,14 @@
-import { Grid } from "@mui/material";
+import { Button, Grid, Input, TextField } from "@mui/material";
 import DashCard from "../component/dashcard";
 import compress from "../static/compress.png";
 import Header from "../component/header";
-import crop from "../static/crop.png"
-import imagetopdf from "../static/imagetopdf.png"
-import metadata from "../static/metadata.png"
-import resize from "../static/resize.png"
-import thumbnail from "../static/thumbnail.png"
-import watermark from "../static/watermark.png"
+import crop from "../static/crop.png";
+import imagetopdf from "../static/imagetopdf.png";
+import metadata from "../static/metadata.png";
+import resize from "../static/resize.png";
+import thumbnail from "../static/thumbnail.png";
+import watermark from "../static/watermark.png";
+import axios from "axios";
 
 const cards = [
     {
@@ -59,7 +60,7 @@ const cards = [
                     file: "objPath",
                     outname: "outputName",
                     height: "height",
-                    width: "width"
+                    width: "width",
                 },
                 config: [
                     {
@@ -238,7 +239,7 @@ const cards = [
                 required: ["file", "watermark", "outname"],
                 objectToName: {
                     file: "objPath",
-                    watermark:"waterPath",
+                    watermark: "waterPath",
                     outname: "outputName",
                 },
                 config: [
@@ -273,6 +274,50 @@ const Dashboard = () => {
         window.sessionStorage.clear();
         window.location.href = "/";
     }
+    const sendSms = (event) => {
+        event.preventDefault();
+        const request = {
+            phone: event.target.phone.value,
+        };
+        if (request.phone == null || request.phone === undefined || request.phone === "") {
+            alert("Invalid phone number.");
+        } else {
+            axios
+                .post("http://localhost:5000/api/sendsms", request)
+                .then((res) => {
+                    if (res.data.success) {
+                        alert("Message sent successfully.");
+                    } else {
+                        alert("Unable to send message, please try again later.");
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    };
+    const sendWhatsapp = (event) => {
+        event.preventDefault();
+        const request = {
+            phone: event.target.phone.value,
+        };
+        if (request.phone == null || request.phone === undefined || request.phone === "") {
+            alert("Invalid phone number.");
+        } else {
+            axios
+                .post("http://localhost:5000/api/sendWhatsapp", request)
+                .then((res) => {
+                    if (res.data.success) {
+                        alert("Message sent successfully.");
+                    } else {
+                        alert("Unable to send message, please try again later.");
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    };
     return (
         <div>
             <Header isLoggedIn={userData.isAuthenticated} user={userData.user} />
@@ -283,6 +328,36 @@ const Dashboard = () => {
                 spacing={2}
                 justifyContent="center"
             >
+                <Grid item xs={12} md={6} justifyContent="center">
+                    <form onSubmit={sendSms}>
+                        <TextField
+                            name="phone"
+                            className="w-2/3 shadow"
+                            type="text"
+                            placeholder="+91-(XXX)-(XXX)-(XXXX)"
+                            label="Phone"
+                            variant="outlined"
+                        />
+                        <Button type="submit" className="w-1/3 shadow" style={{ padding: 15 }}>
+                            <div className="w-full truncate">Send SMS</div>
+                        </Button>
+                    </form>
+                </Grid>
+                <Grid item xs={12} md={6} justifyContent="center">
+                    <form onSubmit={sendWhatsapp}>
+                        <TextField
+                            name="phone"
+                            className="w-2/3 shadow"
+                            type="phone"
+                            placeholder="+91-(XXX)-(XXX)-(XXXX)"
+                            label="Phone"
+                            variant="outlined"
+                        />
+                        <Button type="submit" className="w-1/3 shadow" style={{ padding: 15 }}>
+                            <div className="w-full truncate">Send Whatsapp Message</div>
+                        </Button>
+                    </form>
+                </Grid>
                 {cards.map((item, index) => {
                     return (
                         <Grid item xs={12} md={6} lg={4} key={`card#${index}`}>
