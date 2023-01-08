@@ -34,7 +34,7 @@ export default class DashCard extends React.Component {
                     className="cursor-pointer mt-4 w-full h-14 bg-gray-50 bottom-0 right-0 rounded-full shadow-2xl border-slate-400 border-2 flex flex-col items-center"
                 >
                     <div className="flex-grow flex flex-row items-center">
-                        {this.state.isFormOpen ? "Hide" : "Collapse"}
+                        {this.state.isFormOpen ? "Hide" : "Show"}
                     </div>
                 </div>
                 {this.state.isFormOpen ? (

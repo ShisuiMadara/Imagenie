@@ -17,7 +17,6 @@ export default class CardForm extends React.Component {
                     console.log(`uploading ${file.files[0].name}`);
                     formData.append("file", file.files[0], file.files[0].name);
                     axios.post("http://localhost:5000/api/fileUpload", formData).then((res) => {
-                        console.log(res.data.success);
                         if (res.data.success) {
                             console.log("done");
                             request[this.props.config.objectToName[id]] = res.data.remotePath;
@@ -34,22 +33,20 @@ export default class CardForm extends React.Component {
         const interval = setInterval(() => {
             if (failed || Object.keys(request).length === this.props.config.required.length) {
                 if (!failed) {
-                    console.log(request);
                     axios
                         .post(this.props.config.requestURL, {
                             request,
                         })
                         .then((res) => {
                             if (res.data.success) {
+                                console.log(res.data.data);
                                 const a = document.createElement("a");
                                 a.style.display = "none";
                                 document.body.appendChild(a);
-                                const blobFile = new Blob([res.data.data], { type: "image/png" });
-                                const url = window.URL.createObjectURL(blobFile);
-                                a.href = url;
-                                a.download = "test.png";
+                                a.href = res.data.data.data;
+                                a.download = `${request.outputName}${res.data.type}`;
                                 a.click();
-                                window.URL.revokeObjectURL(url);
+                                window.location.reload();
                             }
                             this.setState({
                                 isDisabled: false,
