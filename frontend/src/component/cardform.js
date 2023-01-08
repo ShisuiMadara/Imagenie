@@ -38,8 +38,8 @@ export default class CardForm extends React.Component {
                             request,
                         })
                         .then((res) => {
+                            console.log(res.data);
                             if (res.data.success) {
-                                console.log(res.data.data);
                                 const a = document.createElement("a");
                                 a.style.display = "none";
                                 document.body.appendChild(a);

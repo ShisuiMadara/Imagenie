@@ -11,8 +11,8 @@ async function watermark (req,res) {
     var waterPath = req.waterPath
 
     const form = new FormData();
-    form.append('image', fs.readFileSync(objPath), '"stock-photo.jpg"')
-    form.append('watermark', fs.readFileSync(waterPath), '"watermark-photo.jpg"')
+    form.append('image', fs.readFileSync(objPath), "stock-photo.jpg")
+    form.append('watermark', fs.readFileSync(waterPath), "watermark-photo.jpg")
 
     await axios.post(
         'https://api.apyhub.com/processor/image/watermark/file/url',
@@ -29,7 +29,7 @@ async function watermark (req,res) {
     ).then(async function (response) {
         console.log(JSON.stringify(response.data));
         await res.send({
-            sucess:true,
+            success:true,
             data: response.data,
             type: '.png'
         })
