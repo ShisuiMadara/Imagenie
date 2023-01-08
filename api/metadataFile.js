@@ -19,10 +19,12 @@ async function crop(req, res) {
             },
         })
         .then(async function (response) {
-            console.log(JSON.stringify(response.data));
             await res.send({
                 success: true,
-                data: response.data,
+                data:
+                    "data:text/json;charset=utf-8," +
+                    encodeURIComponent(JSON.stringify(response.data)),
+                type: ".json",
             });
         })
         .catch(function (error) {

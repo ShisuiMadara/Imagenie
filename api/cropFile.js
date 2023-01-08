@@ -23,10 +23,9 @@ async function crop(req, res) {
             },
         })
         .then(async function (response) {
-            console.log(JSON.stringify(response.data));
             await res.send({
                 success: true,
-                data: response.data,
+                data: response.data.data,
                 type: ".png",
             });
         })

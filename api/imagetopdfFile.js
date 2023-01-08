@@ -9,7 +9,7 @@ async function convert(req, res) {
     var objPath = req.objPath;
 
     const form = new FormData();
-    form.append("image", fs.readFileSync(objPath), "stock-photo.jpg");
+    form.append("file", fs.readFileSync(objPath), "stock-photo.jpg");
 
     await axios
         .post("https://api.apyhub.com/convert/image-file/pdf-url", form, {
@@ -22,10 +22,9 @@ async function convert(req, res) {
             },
         })
         .then(async function (response) {
-            console.log(JSON.stringify(response.data));
             await res.send({
                 success: true,
-                data: response.data,
+                data: response.data.data,
                 type: ".pdf",
             });
         })

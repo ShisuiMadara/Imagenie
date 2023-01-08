@@ -43,7 +43,7 @@ export default class CardForm extends React.Component {
                                 const a = document.createElement("a");
                                 a.style.display = "none";
                                 document.body.appendChild(a);
-                                a.href = res.data.data.data;
+                                a.href = res.data.data;
                                 a.download = `${request.outputName}${res.data.type}`;
                                 a.click();
                                 window.location.reload();

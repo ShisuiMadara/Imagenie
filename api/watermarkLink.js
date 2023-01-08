@@ -25,7 +25,6 @@ async function watermark(req, res) {
 
     await axios(config)
         .then(async function (response) {
-            console.log(JSON.stringify(response.data));
             await res.send({
                 success: true,
                 data: response.data,

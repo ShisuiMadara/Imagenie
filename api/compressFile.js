@@ -11,7 +11,7 @@ async function compress(req, res) {
     await axios
         .post("https://api.apyhub.com/processor/image/compress/file/url", form, {
             params: {
-                output: req.body.request.outputName + '.png',
+                output: req.body.request.outputName + ".png",
                 quality: req.body.request.quality,
             },
             headers: {
@@ -20,11 +20,10 @@ async function compress(req, res) {
             },
         })
         .then(async function (response) {
-            console.log(JSON.stringify(response.data));
             await res.send({
                 success: true,
-                data: response.data,
-                type: '.png'
+                data: response.data.data,
+                type: ".png",
             });
         })
         .catch(function (error) {
